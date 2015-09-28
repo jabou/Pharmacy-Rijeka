@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		0646436C1BB895CF008737D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0646436B1BB895CF008737D3 /* main.m */; };
 		0646436F1BB895CF008737D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0646436E1BB895CF008737D3 /* AppDelegate.m */; };
-		064643721BB895CF008737D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064643711BB895CF008737D3 /* ViewController.m */; };
 		064643751BB895CF008737D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 064643731BB895CF008737D3 /* Main.storyboard */; };
 		064643771BB895CF008737D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 064643761BB895CF008737D3 /* Assets.xcassets */; };
 		0646437A1BB895CF008737D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 064643781BB895CF008737D3 /* LaunchScreen.storyboard */; };
+		064643821BB89866008737D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064643811BB89866008737D3 /* MapKit.framework */; };
+		064643841BB8988F008737D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064643831BB8988F008737D3 /* CoreLocation.framework */; };
+		064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064643861BB8A1A1008737D3 /* MapsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		064643891BB8AC8B008737D3 /* Kampus.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 064643881BB8AC8B008737D3 /* Kampus.gpx */; settings = {ASSET_TAGS = (); }; };
+		0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0646438A1BB8BE9D008737D3 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +24,16 @@
 		0646436B1BB895CF008737D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0646436D1BB895CF008737D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0646436E1BB895CF008737D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		064643701BB895CF008737D3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		064643711BB895CF008737D3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		064643741BB895CF008737D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		064643761BB895CF008737D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		064643791BB895CF008737D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0646437B1BB895CF008737D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		064643811BB89866008737D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		064643831BB8988F008737D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		064643851BB8A1A1008737D3 /* MapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapsViewController.h; sourceTree = "<group>"; };
+		064643861BB8A1A1008737D3 /* MapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapsViewController.m; sourceTree = "<group>"; };
+		064643881BB8AC8B008737D3 /* Kampus.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Kampus.gpx; sourceTree = "<group>"; };
+		0646438A1BB8BE9D008737D3 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +41,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */,
+				064643841BB8988F008737D3 /* CoreLocation.framework in Frameworks */,
+				064643821BB89866008737D3 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +53,9 @@
 		0646435E1BB895CF008737D3 = {
 			isa = PBXGroup;
 			children = (
+				0646438A1BB8BE9D008737D3 /* iAd.framework */,
+				064643831BB8988F008737D3 /* CoreLocation.framework */,
+				064643811BB89866008737D3 /* MapKit.framework */,
 				064643691BB895CF008737D3 /* Pharmacy */,
 				064643681BB895CF008737D3 /* Products */,
 			);
@@ -60,9 +74,9 @@
 			children = (
 				0646436D1BB895CF008737D3 /* AppDelegate.h */,
 				0646436E1BB895CF008737D3 /* AppDelegate.m */,
-				064643701BB895CF008737D3 /* ViewController.h */,
-				064643711BB895CF008737D3 /* ViewController.m */,
 				064643731BB895CF008737D3 /* Main.storyboard */,
+				064643851BB8A1A1008737D3 /* MapsViewController.h */,
+				064643861BB8A1A1008737D3 /* MapsViewController.m */,
 				064643761BB895CF008737D3 /* Assets.xcassets */,
 				064643781BB895CF008737D3 /* LaunchScreen.storyboard */,
 				0646437B1BB895CF008737D3 /* Info.plist */,
@@ -74,6 +88,7 @@
 		0646436A1BB895CF008737D3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				064643881BB8AC8B008737D3 /* Kampus.gpx */,
 				0646436B1BB895CF008737D3 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -110,6 +125,11 @@
 				TargetAttributes = {
 					064643661BB895CF008737D3 = {
 						CreatedOnToolsVersion = 7.0;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				064643891BB8AC8B008737D3 /* Kampus.gpx in Resources */,
 				0646437A1BB895CF008737D3 /* LaunchScreen.storyboard in Resources */,
 				064643771BB895CF008737D3 /* Assets.xcassets in Resources */,
 				064643751BB895CF008737D3 /* Main.storyboard in Resources */,
@@ -149,9 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				064643721BB895CF008737D3 /* ViewController.m in Sources */,
 				0646436F1BB895CF008737D3 /* AppDelegate.m in Sources */,
 				0646436C1BB895CF008737D3 /* main.m in Sources */,
+				064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +282,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Pharmacy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AbouAldan.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,7 +295,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				INFOPLIST_FILE = Pharmacy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AbouAldan.Pharmacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
