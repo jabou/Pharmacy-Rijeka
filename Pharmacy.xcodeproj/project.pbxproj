@@ -17,6 +17,8 @@
 		064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064643861BB8A1A1008737D3 /* MapsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		064643891BB8AC8B008737D3 /* Kampus.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 064643881BB8AC8B008737D3 /* Kampus.gpx */; settings = {ASSET_TAGS = (); }; };
 		0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0646438A1BB8BE9D008737D3 /* iAd.framework */; };
+		06BAA9C31BB98FEB0050C75B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C21BB98FEB0050C75B /* InfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		06BAA9C91BB9B2FE0050C75B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C81BB9B2FE0050C75B /* Alerts.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		064643861BB8A1A1008737D3 /* MapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapsViewController.m; sourceTree = "<group>"; };
 		064643881BB8AC8B008737D3 /* Kampus.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Kampus.gpx; sourceTree = "<group>"; };
 		0646438A1BB8BE9D008737D3 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		06BAA9C11BB98FEB0050C75B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		06BAA9C21BB98FEB0050C75B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		06BAA9C81BB9B2FE0050C75B /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
+		06BAA9CA1BB9B30B0050C75B /* Alerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,10 @@
 				064643731BB895CF008737D3 /* Main.storyboard */,
 				064643851BB8A1A1008737D3 /* MapsViewController.h */,
 				064643861BB8A1A1008737D3 /* MapsViewController.m */,
+				06BAA9CA1BB9B30B0050C75B /* Alerts.h */,
+				06BAA9C81BB9B2FE0050C75B /* Alerts.m */,
+				06BAA9C11BB98FEB0050C75B /* InfoViewController.h */,
+				06BAA9C21BB98FEB0050C75B /* InfoViewController.m */,
 				064643761BB895CF008737D3 /* Assets.xcassets */,
 				064643781BB895CF008737D3 /* LaunchScreen.storyboard */,
 				0646437B1BB895CF008737D3 /* Info.plist */,
@@ -172,6 +182,8 @@
 			files = (
 				0646436F1BB895CF008737D3 /* AppDelegate.m in Sources */,
 				0646436C1BB895CF008737D3 /* main.m in Sources */,
+				06BAA9C91BB9B2FE0050C75B /* Alerts.m in Sources */,
+				06BAA9C31BB98FEB0050C75B /* InfoViewController.m in Sources */,
 				064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +249,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -273,6 +286,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -323,6 +337,7 @@
 				064643801BB895CF008737D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

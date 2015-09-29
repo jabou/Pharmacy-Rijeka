@@ -21,12 +21,26 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qf6-QE-HTT">
+                                <rect key="frame" x="554" y="510" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YkU-Dh-B7q"/>
+                                    <constraint firstAttribute="width" constant="30" id="d6o-vp-54P"/>
+                                </constraints>
+                                <state key="normal" image="myPosition"/>
+                                <connections>
+                                    <action selector="myLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ja-ib-fAZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qf6-QE-HTT" secondAttribute="bottom" constant="60" id="EOp-Bd-Go9"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="980-G1-M6o" secondAttribute="bottom" id="j5k-qa-LS3"/>
                             <constraint firstItem="980-G1-M6o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lU2-HN-7Mm"/>
+                            <constraint firstAttribute="trailing" secondItem="qf6-QE-HTT" secondAttribute="trailing" constant="16" id="oNm-Mz-g4D"/>
                             <constraint firstAttribute="trailing" secondItem="980-G1-M6o" secondAttribute="trailing" id="pol-bo-qGj"/>
                             <constraint firstItem="980-G1-M6o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yHn-yY-T4a"/>
                         </constraints>
@@ -34,11 +48,31 @@
                     <navigationItem key="navigationItem" id="u1h-V2-jyb"/>
                     <connections>
                         <outlet property="mapView" destination="980-G1-M6o" id="Dhb-Uy-I8w"/>
+                        <segue destination="UfT-3m-M8O" kind="show" identifier="pharmDetail" id="JVc-nB-yHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1178" y="325"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="4PV-Q2-hCl">
+            <objects>
+                <viewController id="UfT-3m-M8O" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gLQ-wK-Fzv"/>
+                        <viewControllerLayoutGuide type="bottom" id="oxJ-r2-TkM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0XI-t9-qrH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Yy-rO-qp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1865" y="325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jRC-BA-hQk">
@@ -60,4 +94,7 @@
             <point key="canvasLocation" x="505" y="325"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="myPosition" width="30" height="30"/>
+    </resources>
 </document>

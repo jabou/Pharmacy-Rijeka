@@ -15,11 +15,15 @@
 
 @implementation MapsViewController
 
-    CLLocationManager *manager;
+CLLocationManager *manager;
+NSString *sendObject;
+NSString *destination;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSString *currentVersion = [[UIDevice currentDevice] systemVersion];
     
     #pragma mark - Navigation bar title
     [[self navigationItem] setTitle:@"Pharmacy"];
@@ -29,14 +33,21 @@
     _mapView.showsUserLocation = YES;
     _mapView.showsPointsOfInterest = NO;
     _mapView.showsBuildings = NO;
-    _mapView.pitchEnabled = YES;
+    if ([currentVersion compare: @"8.0" options: NSNumericSearch] != NSOrderedAscending) {
+        _mapView.pitchEnabled = YES;
+    } else {
+        _mapView.pitchEnabled = NO;
+    }
     _mapView.delegate = self;
     
     #pragma mark - Setup location manager
     manager = [[CLLocationManager alloc] init];
     manager.delegate = self;
     manager.desiredAccuracy = kCLLocationAccuracyBest;
-    [manager requestWhenInUseAuthorization];
+    
+    if ([currentVersion compare: @"8.0" options: NSNumericSearch] != NSOrderedAscending) {
+        [manager requestWhenInUseAuthorization];
+    }
     [manager startUpdatingLocation];
     
     #pragma mark Zoom on Rijena
@@ -83,6 +94,10 @@
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     
+    if (mapView.userLocation == annotation) {
+        return nil;
+    }
+    
     NSString *reuseID = @"pin";
     MKAnnotationView *pinView;
     
@@ -102,7 +117,17 @@
     return pinView;
 }
 
-/*
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    sendObject =  [view.annotation title];
+    CLLocationDegrees latitude = view.annotation.coordinate.latitude;
+    CLLocationDegrees longitude = view.annotation.coordinate.longitude;
+    destination = [NSString stringWithFormat:@"%f,%f",latitude,longitude];
+    
+    [self performSegueWithIdentifier:@"pharmDetail" sender:self];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -110,6 +135,27 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+- (IBAction)myLocation:(id)sender {
+    
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusNotDetermined:
+        case kCLAuthorizationStatusRestricted:
+            
+            [GPSAlert locationAccessError: self];
+            break;
+            
+        default:
+            if (_mapView.userLocation.location == nil) {
+                [GPSAlert positionError:self];
+            } else {
+                MKCoordinateRegion newRegion = MKCoordinateRegionMake(_mapView.userLocation.coordinate, MKCoordinateSpanMake(0.007, 0.007));
+                [_mapView setRegion:newRegion animated:YES];
+            }
+            break;
+    }
+}
 
 @end
+
