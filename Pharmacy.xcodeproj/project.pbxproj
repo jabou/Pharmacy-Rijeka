@@ -19,6 +19,9 @@
 		0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0646438A1BB8BE9D008737D3 /* iAd.framework */; };
 		06BAA9C31BB98FEB0050C75B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C21BB98FEB0050C75B /* InfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		06BAA9C91BB9B2FE0050C75B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C81BB9B2FE0050C75B /* Alerts.m */; settings = {ASSET_TAGS = (); }; };
+		06C078211BBEA5B800272136 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C078201BBEA5B800272136 /* DBManager.m */; settings = {ASSET_TAGS = (); }; };
+		06C078231BBEA60B00272136 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C078221BBEA60B00272136 /* libsqlite3.tbd */; };
+		06C078251BBEA8A100272136 /* PharmacyData.sql in Resources */ = {isa = PBXBuildFile; fileRef = 06C078241BBEA8A100272136 /* PharmacyData.sql */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,10 @@
 		06BAA9C21BB98FEB0050C75B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		06BAA9C81BB9B2FE0050C75B /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
 		06BAA9CA1BB9B30B0050C75B /* Alerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
+		06C0781F1BBEA5B800272136 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		06C078201BBEA5B800272136 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		06C078221BBEA60B00272136 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		06C078241BBEA8A100272136 /* PharmacyData.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = PharmacyData.sql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C078231BBEA60B00272136 /* libsqlite3.tbd in Frameworks */,
 				0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */,
 				064643841BB8988F008737D3 /* CoreLocation.framework in Frameworks */,
 				064643821BB89866008737D3 /* MapKit.framework in Frameworks */,
@@ -59,9 +67,7 @@
 		0646435E1BB895CF008737D3 = {
 			isa = PBXGroup;
 			children = (
-				0646438A1BB8BE9D008737D3 /* iAd.framework */,
-				064643831BB8988F008737D3 /* CoreLocation.framework */,
-				064643811BB89866008737D3 /* MapKit.framework */,
+				06C0781E1BBEA57600272136 /* Frameworks */,
 				064643691BB895CF008737D3 /* Pharmacy */,
 				064643681BB895CF008737D3 /* Products */,
 			);
@@ -91,6 +97,9 @@
 				064643781BB895CF008737D3 /* LaunchScreen.storyboard */,
 				0646437B1BB895CF008737D3 /* Info.plist */,
 				0646436A1BB895CF008737D3 /* Supporting Files */,
+				06C0781F1BBEA5B800272136 /* DBManager.h */,
+				06C078201BBEA5B800272136 /* DBManager.m */,
+				06C078241BBEA8A100272136 /* PharmacyData.sql */,
 			);
 			path = Pharmacy;
 			sourceTree = "<group>";
@@ -102,6 +111,17 @@
 				0646436B1BB895CF008737D3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06C0781E1BBEA57600272136 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06C078221BBEA60B00272136 /* libsqlite3.tbd */,
+				0646438A1BB8BE9D008737D3 /* iAd.framework */,
+				064643831BB8988F008737D3 /* CoreLocation.framework */,
+				064643811BB89866008737D3 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				064643891BB8AC8B008737D3 /* Kampus.gpx in Resources */,
+				06C078251BBEA8A100272136 /* PharmacyData.sql in Resources */,
 				0646437A1BB895CF008737D3 /* LaunchScreen.storyboard in Resources */,
 				064643771BB895CF008737D3 /* Assets.xcassets in Resources */,
 				064643751BB895CF008737D3 /* Main.storyboard in Resources */,
@@ -183,6 +204,7 @@
 				0646436F1BB895CF008737D3 /* AppDelegate.m in Sources */,
 				0646436C1BB895CF008737D3 /* main.m in Sources */,
 				06BAA9C91BB9B2FE0050C75B /* Alerts.m in Sources */,
+				06C078211BBEA5B800272136 /* DBManager.m in Sources */,
 				06BAA9C31BB98FEB0050C75B /* InfoViewController.m in Sources */,
 				064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */,
 			);

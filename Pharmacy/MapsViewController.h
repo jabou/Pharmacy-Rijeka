@@ -11,9 +11,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import <iAd/iAd.h>
 #import "Alerts.h"
+#import "InfoViewController.h"
 
 
-@interface MapsViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MapsViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, ADBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 -(IBAction)myLocation:(id)sender;
