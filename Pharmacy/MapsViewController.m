@@ -9,7 +9,6 @@
 #import "MapsViewController.h"
 #import "DBManager.h"
 
-
 @interface MapsViewController ()
 
 @property (nonatomic, strong) DBManager *dbManager;
@@ -19,12 +18,10 @@
 @property (nonatomic, strong) NSString *destination;
 @property (nonatomic, strong) MKDirectionsRequest *userLoc;
 
-@property (nonatomic) BOOL isBannerVisible;
-@property (nonatomic, strong) ADBannerView *adBanner;
-
 @end
 
 @implementation MapsViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,8 +29,6 @@
     
     NSString *currentVersion = [[UIDevice currentDevice] systemVersion];
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"PharmacyData.sql"];
-    self.adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 320, 50)];
-    self.adBanner.delegate = self;
     
     #pragma mark - Navigation bar title
     [[self navigationItem] setTitle:@"Pharmacy"];
@@ -89,36 +84,6 @@
     }
 }
 
--(void)bannerViewDidLoadAd:(ADBannerView *)banner{
-    
-    if (!self.isBannerVisible) {
-        
-        if (self.adBanner.superview == nil) {
-            [self.view addSubview: self.adBanner];
-        }
-        
-        [UIView beginAnimations: @"animateAdBannerOn" context:NULL];
-        
-        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-        
-        [UIView commitAnimations];
-        
-        self.isBannerVisible = YES;
-    }
-}
-
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    
-    if (self.isBannerVisible) {
-        [UIView beginAnimations:@"animateAdBannerOff" context: NULL];
-        
-        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
-        
-        [UIView commitAnimations];
-        
-        self.isBannerVisible = NO;
-    }
-}
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     

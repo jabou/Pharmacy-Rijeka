@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 #import <MapKit/MapKit.h>
 
-@interface InfoViewController : UIViewController <ADBannerViewDelegate>
+@interface InfoViewController : UIViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
@@ -23,5 +22,9 @@
 @property NSString* pharmacyName;
 @property NSString* pharmacyCoordinates;
 @property MKDirectionsRequest* userLocation;
+
+- (IBAction)startNavigation:(id)sender;
+- (IBAction)starCall:(id)sender;
+- (IBAction)sendMail:(id)sender;
 
 @end

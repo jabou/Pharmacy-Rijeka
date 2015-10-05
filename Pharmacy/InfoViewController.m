@@ -12,23 +12,24 @@
 @interface InfoViewController ()
 
 @property (nonatomic, strong) DBManager *dbManager;
-@property (nonatomic) BOOL isBannerVisible;
-//@property (nonatomic, strong)
 
--(void)showAd:(ADBannerView *)banner;
+@property (nonatomic, strong) NSString *telNumber;
+@property (nonatomic, strong) UIAlertView *callMessage;
+@property (nonatomic, strong) NSString *mailAddress;
+@property (nonatomic, strong) UIAlertView *mailMessage;
+@property (nonatomic, strong) UIAlertView *startNavigation;
+
+-(void)provideDirections:(NSString *) dest;
+
 @end
 
 @implementation InfoViewController
-
-ADBannerView *adBanner;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[self navigationController] setTitle: @"Information"];
     
-    adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 320, 50)];
-    adBanner.delegate = self;
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename: @"PharmacyData.sql"];
     
     _nameLabel.text = self.pharmacyName;
@@ -36,54 +37,18 @@ ADBannerView *adBanner;
     NSArray *results = [[NSArray alloc] initWithArray: [self.dbManager loadDataFromDB: query]];
     
     for (NSArray *result in results) {
+        
+        self.telNumber = result[2];
+        self.mailAddress = result[3];
+        
         _addressLabel.text = result[0];
         _pictureView.image = [UIImage imageNamed: result[1]];
-        _telefoneLabel.text = result[2];
-        _mailLabel.text = result[3];
+        
+        _telefoneLabel.text = self.telNumber;
+        
+        _mailLabel.text = self.mailAddress;
         _workDayLabel.text = result[4];
         _saturdayLabel.text = result[5];
-    }
-    
-
-    if (adBanner.subviews !=nil) {
-        [self showAd:adBanner];
-    }
-}
-
--(void)bannerViewDidLoadAd:(ADBannerView *)banner{
-    
-    [self showAd:banner];
-    
-}
-
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    
-    if (self.isBannerVisible) {
-        
-        [UIView beginAnimations:@"animateAdBannerOff" context: NULL];
-        
-        banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height);
-        
-        [UIView commitAnimations];
-        
-        self.isBannerVisible = NO;
-    }
-}
-
--(void)showAd:(ADBannerView *)banner{
-    if (!self.isBannerVisible) {
-        
-        if (adBanner.superview == nil) {
-            [self.view addSubview: adBanner];
-        }
-        
-        [UIView beginAnimations: @"animateAdBannerOn" context: NULL];
-        
-        banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height);
-        
-        [UIView commitAnimations];
-        
-        self.isBannerVisible = YES;
     }
 }
 
@@ -92,4 +57,149 @@ ADBannerView *adBanner;
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)startNavigation:(id)sender {
+    
+    if ([UIAlertController class]) {
+        UIAlertController *startNavigation = [UIAlertController alertControllerWithTitle: @"Start navigation" message: @"Would you like to start navigatin?" preferredStyle: UIAlertControllerStyleAlert];
+        UIAlertAction *start = [UIAlertAction actionWithTitle: @"Yes" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self provideDirections: self.pharmacyCoordinates];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle: @"No" style: UIAlertActionStyleCancel handler: nil];
+        [startNavigation addAction: start];
+        [startNavigation addAction: cancel];
+        [self presentViewController: startNavigation animated: YES completion: nil];
+    } else {
+        self.startNavigation = [[UIAlertView alloc] initWithTitle: @"Start navigation" message: @"Would you like to start navigatin?" delegate: self cancelButtonTitle: @"No" otherButtonTitles: @"Yes", nil];
+        [self.startNavigation show];
+    }
+    
+}
+
+- (IBAction)starCall:(id)sender{
+    
+    NSString *telMessage = [NSString stringWithFormat: @"Would you like to call the number:\n%@",self.telNumber];
+    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",self.telNumber];
+
+    if ([UIAlertController class]) {
+        UIAlertController *callMessage = [UIAlertController alertControllerWithTitle: @"Call Pharmacy" message: telMessage preferredStyle: UIAlertControllerStyleAlert];
+        UIAlertAction *call = [UIAlertAction actionWithTitle: @"Call" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString: callPhone]];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle: @"Cancel" style: UIAlertActionStyleCancel handler: nil];
+        [callMessage addAction: call];
+        [callMessage addAction: cancel];
+        [self presentViewController: callMessage animated: YES completion: nil];
+    } else {
+        self.callMessage = [[UIAlertView alloc] initWithTitle: @"Call Pharmacy" message: telMessage delegate: self cancelButtonTitle: @"Cancel" otherButtonTitles: @"Call", nil];
+        [self.callMessage show];
+    }
+    
+}
+
+- (IBAction)sendMail:(id)sender{
+    
+    NSString *mailMessage = [NSString stringWithFormat: @"Would you like to send an email to:\n%@",self.mailAddress];
+    NSString *sendMail = [NSString stringWithFormat:@"mailto:%@",self.mailAddress];
+    
+    if ([self.mailAddress isEqual: @"no data"]) {
+        
+        if ([UIAlertController class]) {
+            UIAlertController *callMessage = [UIAlertController alertControllerWithTitle: @"Email Pharmacy" message: @"Selected pharmacy does not have an email address" preferredStyle: UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle: @"Ok" style: UIAlertActionStyleCancel handler: nil];
+            [callMessage addAction: cancel];
+            [self presentViewController: callMessage animated: YES completion: nil];
+        } else {
+            self.mailMessage = [[UIAlertView alloc] initWithTitle: @"Email Pharmacy" message: @"Selected pharmacy does not have an email address" delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+            [self.mailMessage show];
+        }
+        
+    } else {
+        
+        if ([UIAlertController class]) {
+            UIAlertController *callMessage = [UIAlertController alertControllerWithTitle: @"Email Pharmacy" message: mailMessage preferredStyle: UIAlertControllerStyleAlert];
+            UIAlertAction *call = [UIAlertAction actionWithTitle: @"Send" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: sendMail]];
+            }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle: @"Cancel" style: UIAlertActionStyleCancel handler: nil];
+            [callMessage addAction: call];
+            [callMessage addAction: cancel];
+            [self presentViewController: callMessage animated: YES completion: nil];
+        } else {
+            self.mailMessage = [[UIAlertView alloc] initWithTitle: @"Email Pharmacy" message: mailMessage delegate: self cancelButtonTitle: @"Cancel" otherButtonTitles: @"Send", nil];
+            [self.mailMessage show];
+        }
+    }
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSString *callPhone = [NSString stringWithFormat:@"tel://%@",self.telNumber];
+    NSString *sendMail = [NSString stringWithFormat:@"mailto:%@",self.mailAddress];
+
+    if ([alertView isEqual: self.callMessage]) {
+        if (buttonIndex == 1) {
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString: callPhone]];
+        }
+    }
+    else if ([alertView isEqual: self.mailMessage]){
+        if (buttonIndex == 1) {
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString: sendMail]];
+        }
+    }
+    else if ([alertView isEqual: self.startNavigation]){
+        if (buttonIndex == 1) {
+            [self provideDirections: self.pharmacyCoordinates];
+        }
+    }
+}
+
+-(void)provideDirections:(NSString *)dest{
+    
+    //NSString *destination = dest;
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    
+    [geoCoder geocodeAddressString: dest completionHandler:^(NSArray<CLPlacemark *> *placemarks, NSError *error) {
+        
+        if (error != nil) {
+            //handle error
+        } else {
+            
+            MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+            request.source = [MKMapItem mapItemForCurrentLocation];
+            
+            //Convert corelocation destination to mapkit placemark
+            CLPlacemark *placemark = placemarks.firstObject;
+            CLLocationCoordinate2D destinationCoordinates = placemark.location.coordinate;
+            
+            //get placemark of destination address
+            MKPlacemark *destination = [[MKPlacemark alloc] initWithCoordinate: destinationCoordinates addressDictionary: nil];
+            request.destination = [[MKMapItem alloc] initWithPlacemark: destination];
+            
+            //set transportation method to any
+            request.transportType = MKDirectionsTransportTypeAny;
+            
+            //get direction
+            MKDirections *directions = [[MKDirections alloc] initWithRequest: request];
+            
+            [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+                
+
+                NSDictionary *launchOptions = @{
+                                                MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeKey,
+                                                MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger: MKMapTypeStandard]
+                                                };
+                NSArray<MKMapItem *> *items = @[response.destination];
+                [MKMapItem openMapsWithItems: items launchOptions: launchOptions];
+            }];
+        }
+    }];
+    
+}
+
 @end
+
+
+
+
+

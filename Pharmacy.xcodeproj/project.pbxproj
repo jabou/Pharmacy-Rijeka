@@ -16,7 +16,6 @@
 		064643841BB8988F008737D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064643831BB8988F008737D3 /* CoreLocation.framework */; };
 		064643871BB8A1A1008737D3 /* MapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064643861BB8A1A1008737D3 /* MapsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		064643891BB8AC8B008737D3 /* Kampus.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 064643881BB8AC8B008737D3 /* Kampus.gpx */; settings = {ASSET_TAGS = (); }; };
-		0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0646438A1BB8BE9D008737D3 /* iAd.framework */; };
 		06BAA9C31BB98FEB0050C75B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C21BB98FEB0050C75B /* InfoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		06BAA9C91BB9B2FE0050C75B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BAA9C81BB9B2FE0050C75B /* Alerts.m */; settings = {ASSET_TAGS = (); }; };
 		06C078211BBEA5B800272136 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C078201BBEA5B800272136 /* DBManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -38,7 +37,6 @@
 		064643851BB8A1A1008737D3 /* MapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapsViewController.h; sourceTree = "<group>"; };
 		064643861BB8A1A1008737D3 /* MapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapsViewController.m; sourceTree = "<group>"; };
 		064643881BB8AC8B008737D3 /* Kampus.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Kampus.gpx; sourceTree = "<group>"; };
-		0646438A1BB8BE9D008737D3 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		06BAA9C11BB98FEB0050C75B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		06BAA9C21BB98FEB0050C75B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		06BAA9C81BB9B2FE0050C75B /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
@@ -55,7 +53,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				06C078231BBEA60B00272136 /* libsqlite3.tbd in Frameworks */,
-				0646438B1BB8BE9D008737D3 /* iAd.framework in Frameworks */,
 				064643841BB8988F008737D3 /* CoreLocation.framework in Frameworks */,
 				064643821BB89866008737D3 /* MapKit.framework in Frameworks */,
 			);
@@ -117,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				06C078221BBEA60B00272136 /* libsqlite3.tbd */,
-				0646438A1BB8BE9D008737D3 /* iAd.framework */,
 				064643831BB8988F008737D3 /* CoreLocation.framework */,
 				064643811BB89866008737D3 /* MapKit.framework */,
 			);
@@ -249,7 +245,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jasmin Abou Aldan (T6GK77W8B9)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -272,6 +268,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "54396574-9102-4194-87b5-ed2326d54cf2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -293,7 +290,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jasmin Abou Aldan (9ZQJ38F5V6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -309,6 +306,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "14b8f8a4-b964-474c-a34f-bcc387fd17b8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -319,6 +317,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -332,6 +334,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Pharmacy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
