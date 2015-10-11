@@ -8,6 +8,7 @@
 
 #import "MapsViewController.h"
 #import "DBManager.h"
+#import "AppDelegate.h"
 
 @interface MapsViewController ()
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) NSString *sendObject;
 @property (nonatomic, strong) NSString *destination;
 @property (nonatomic, strong) MKDirectionsRequest *userLoc;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonBottomConstraint;
 
 @end
 
@@ -84,6 +86,44 @@
     }
 }
 
+-(AppDelegate *) appdelegate{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    _adView = [[self appdelegate] adView];
+    _adView.delegate = self;
+    _adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+    [self.view addSubview: _adView];
+    [self.adView loadAd];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.adView.delegate = nil;
+    self.adView = nil;
+    [self.adView removeFromSuperview];
+}
+
+
+-(void)adViewDidLoadAd:(MPAdView *)view{
+    [UIView animateWithDuration: 0.3 delay: 0.0 options: UIViewAnimationOptionCurveLinear animations:^{
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height - MOPUB_BANNER_SIZE.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+        
+        self.buttonBottomConstraint.constant = 60.0;
+    } completion: nil];
+}
+
+-(void)adViewDidFailToLoadAd:(MPAdView *)view{
+    [UIView animateWithDuration: 0.3 delay: 0.0 options: UIViewAnimationOptionCurveLinear animations:^{
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+        
+        self.buttonBottomConstraint.constant = 16.0;
+    } completion: nil];
+}
+
+-(UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     

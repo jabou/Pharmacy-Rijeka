@@ -11,11 +11,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Alerts.h"
 #import "InfoViewController.h"
+#import "MPAdView.h"
 
-@interface MapsViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MapsViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MPAdViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 -(IBAction)myLocation:(id)sender;
+@property (strong, nonatomic) MPAdView *adView;
 
 
 @end

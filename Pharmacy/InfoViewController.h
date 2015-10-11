@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MPAdView.h"
 
-@interface InfoViewController : UIViewController <UIAlertViewDelegate>
+
+@interface InfoViewController : UIViewController <UIAlertViewDelegate, MPAdViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *mailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *workDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *saturdayLabel;
+@property (nonatomic) MPAdView *adView;
 
 @property NSString* pharmacyName;
 @property NSString* pharmacyCoordinates;

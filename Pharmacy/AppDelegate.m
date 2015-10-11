@@ -22,7 +22,9 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed: (76.0/255.0) green: (175.0/255.0) blue: (80.0/255.0) alpha:1.0]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-
+    
+    _adView = [[MPAdView alloc] initWithAdUnitId: @"3484085060044654af2c53c792494b84" size:MOPUB_BANNER_SIZE];
+    
     return YES;
 }
 

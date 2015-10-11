@@ -8,6 +8,7 @@
 
 #import "InfoViewController.h"
 #import "DBManager.h"
+#import "AppDelegate.h"
 
 @interface InfoViewController ()
 
@@ -50,6 +51,40 @@
         _workDayLabel.text = result[4];
         _saturdayLabel.text = result[5];
     }
+}
+
+-(AppDelegate *) appdelegate{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    _adView = [[self appdelegate] adView];
+    _adView.delegate = self;
+    _adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+    [self.view addSubview: _adView];
+    [self.adView loadAd];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.adView.delegate = nil;
+    self.adView = nil;
+    [self.adView removeFromSuperview];
+}
+
+-(void)adViewDidLoadAd:(MPAdView *)view{
+    [UIView animateWithDuration: 0.3 delay: 0.0 options: UIViewAnimationOptionCurveLinear animations:^{
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height - MOPUB_BANNER_SIZE.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+    } completion: nil];
+}
+
+-(void)adViewDidFailToLoadAd:(MPAdView *)view{
+    [UIView animateWithDuration: 0.3 delay: 0.0 options: UIViewAnimationOptionCurveLinear animations:^{
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width)/2, self.view.bounds.size.height, MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+    } completion: nil];
+}
+
+-(UIViewController *)viewControllerForPresentingModalView {
+    return self;
 }
 
 - (void)didReceiveMemoryWarning {
